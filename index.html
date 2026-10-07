@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="현재 활동 중인 아티스트와 최신 앨범을 발견하는 음악 큐레이션"
+    />
+    <title>PULSE — Artist Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="PULSE 홈">
+        <span class="brand-mark" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </span>
+        <span>PULSE</span>
+      </a>
+
+      <nav class="main-nav" aria-label="주 메뉴">
+        <a class="is-active" href="#artists">Artists</a>
+        <a href="#albums">Albums</a>
+        <a href="#about">About</a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span>LIVE ARCHIVE</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-backdrop" id="heroBackdrop" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <div class="hero-index">
+            <span id="heroNumber">01</span>
+            <span class="hero-index-line"></span>
+            <span id="heroTotal">06</span>
+          </div>
+          <p class="eyebrow">
+            <span class="eyebrow-line"></span>
+            FEATURED ARTIST
+          </p>
+          <h1 id="heroName">IU</h1>
+          <p class="hero-korean-name" id="heroKoreanName">아이유</p>
+          <p class="hero-description" id="heroDescription">
+            장르의 경계를 넘나들며 자신만의 이야기를 들려주는 아티스트.
+          </p>
+
+          <div class="hero-meta">
+            <div>
+              <span class="meta-label">GENRE</span>
+              <strong id="heroGenre">K-POP</strong>
+            </div>
+            <div>
+              <span class="meta-label">ACTIVE SINCE</span>
+              <strong id="heroSince">2008</strong>
+            </div>
+            <div>
+              <span class="meta-label">RELEASES</span>
+              <strong id="heroReleases">—</strong>
+            </div>
+          </div>
+
+          <a class="primary-button" href="#albums">
+            <span>앨범 컬렉션 보기</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="hero-visual">
+          <div class="orbit orbit-one" aria-hidden="true"></div>
+          <div class="orbit orbit-two" aria-hidden="true"></div>
+          <div class="portrait-wrap">
+            <div class="portrait-loader" id="portraitLoader"></div>
+            <img id="heroPortrait" alt="IU 아티스트 프로필" />
+            <span class="portrait-label">CURRENT / 2026</span>
+          </div>
+          <div class="now-card">
+            <span class="now-card-label">NOW SELECTED</span>
+            <div class="equalizer" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <strong id="nowArtist">IU</strong>
+          </div>
+        </div>
+
+        <button class="hero-control hero-prev" id="prevArtist" aria-label="이전 아티스트">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
+        <button class="hero-control hero-next" id="nextArtist" aria-label="다음 아티스트">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
+        </button>
+      </section>
+
+      <section class="artists-section" id="artists">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">THE CURRENT SCENE</p>
+            <h2>지금 주목할 아티스트</h2>
+          </div>
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-4-4"></path>
+            </svg>
+            <input
+              id="artistSearch"
+              type="search"
+              placeholder="아티스트 검색"
+              aria-label="아티스트 검색"
+            />
+          </div>
+        </div>
+
+        <div class="genre-filters" id="genreFilters" aria-label="장르 필터">
+          <button class="is-active" data-genre="ALL">ALL</button>
+          <button data-genre="K-POP">K-POP</button>
+          <button data-genre="POP">POP</button>
+          <button data-genre="R&B">R&amp;B</button>
+        </div>
+
+        <div class="artist-list" id="artistList" aria-live="polite"></div>
+      </section>
+
+      <section class="albums-section" id="albums">
+        <div class="section-heading albums-heading">
+          <div>
+            <p class="section-kicker">DISCOGRAPHY</p>
+            <h2><span id="albumArtistName">IU</span>의 앨범</h2>
+          </div>
+          <div class="album-heading-meta">
+            <span id="albumCount">불러오는 중</span>
+            <span class="line"></span>
+            <span>최신 발매순</span>
+          </div>
+        </div>
+
+        <div class="album-grid" id="albumGrid" aria-live="polite">
+          <div class="album-skeleton"></div>
+          <div class="album-skeleton"></div>
+          <div class="album-skeleton"></div>
+          <div class="album-skeleton"></div>
+        </div>
+      </section>
+
+      <section class="manifesto" id="about">
+        <p class="section-kicker">PULSE MANIFESTO</p>
+        <div class="manifesto-content">
+          <h2>오늘의 목소리를<br />한곳에 기록합니다.</h2>
+          <p>
+            PULSE는 지금 활동 중인 아티스트와 그들의 음악을 연결하는 디지털 아카이브입니다.
+            익숙한 이름의 새로운 앨범부터 아직 발견하지 못한 목소리까지 만나보세요.
+          </p>
+        </div>
+        <div class="manifesto-stamp" aria-hidden="true">
+          <span>PULSE · MUSIC · ARCHIVE · 2026 ·</span>
+          <strong>✦</strong>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>PULSE</span>
+      </a>
+      <p>ARTIST DATA BY TMDB · ALBUM DATA BY ITUNES</p>
+      <a href="#top">BACK TO TOP ↑</a>
+    </footer>
+
+    <dialog class="album-dialog" id="albumDialog">
+      <button class="dialog-close" id="dialogClose" aria-label="닫기">×</button>
+      <img id="dialogArtwork" alt="" />
+      <div class="dialog-copy">
+        <p id="dialogGenre"></p>
+        <h2 id="dialogTitle"></h2>
+        <span id="dialogArtist"></span>
+        <a id="dialogLink" href="#" target="_blank" rel="noreferrer">APPLE MUSIC에서 보기 ↗</a>
+      </div>
+    </dialog>
+  </body>
+</html>
